@@ -7,7 +7,7 @@
     "start": "NODE_ENV=development webpack-serve ./webpack.config.js",
     "build": "yarn clean; NODE_ENV=production webpack --colors",
     "clean": "rimraf dist",
-    "deploy": "yarn build; surge -p dist -d andy-cs52-starter.surge.sh; yarn clean"
+    "deploy": "yarn build; surge -p dist -d andy-cs52-redux-blog.surge.sh; yarn clean"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",
@@ -41,7 +41,9 @@
     "axios": "^0.18.0",
     "jquery": "^3.3.1",
     "lodash.debounce": "^4.0.8",
+    "marked": "^0.3.19",
     "react": "^16.3.2",
+    "react-absolute-grid": "^3.0.1",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",

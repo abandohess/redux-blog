@@ -11,8 +11,7 @@ class Post extends Component {
     this.state = {
       isTitleEditing: false,
       isContentEditing: false,
-      // isTagsEditing: false,
-      // isCoverURLEditing: false,
+      isTagsEditing: false,
       title: '',
       tags: '',
       content: '',
@@ -20,13 +19,13 @@ class Post extends Component {
     };
 
     this.onTitleChange = this.onTitleChange.bind(this);
-    this.onTitleFocus = this.onTitleFocus.bind(this);
+    this.onTitleClick = this.onTitleClick.bind(this);
     this.onTitleBlur = this.onTitleBlur.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
-    this.onContentFocus = this.onContentFocus.bind(this);
+    this.onContentClick = this.onContentClick.bind(this);
     this.onContentBlur = this.onContentBlur.bind(this);
     this.onTagsChange = this.onTagsChange.bind(this);
-    this.onTagsFocus = this.onTagsFocus.bind(this);
+    this.onTagsClick = this.onTagsClick.bind(this);
     this.onTagsBlur = this.onTagsBlur.bind(this);
   }
 
@@ -47,7 +46,7 @@ class Post extends Component {
     });
   }
 
-  onTitleFocus() {
+  onTitleClick() {
     this.setState({
       isTitleEditing: !this.state.isTitleEditing,
     });
@@ -66,7 +65,7 @@ class Post extends Component {
     });
   }
 
-  onContentFocus() {
+  onContentClick() {
     this.setState({
       isContentEditing: !this.state.isContentEditing,
     });
@@ -85,7 +84,7 @@ class Post extends Component {
     });
   }
 
-  onTagsFocus() {
+  onTagsClick() {
     this.setState({
       isTagsEditing: !this.state.isTagsEditing,
     });
@@ -105,22 +104,21 @@ class Post extends Component {
           <img src={this.props.posts.post.cover_url} alt="" className="rounded-picture" />
           { this.state.isTitleEditing ?
             <input onBlur={this.onTitleBlur} onChange={this.onTitleChange} value={this.state.title} /> :
-            <div role="button" tabIndex={0} onClick={this.onTitleFocus} dangerouslySetInnerHTML={{ __html: marked(this.state.title || '') }} />
+            <div role="button" tabIndex={0} onClick={this.onTitleClick} dangerouslySetInnerHTML={{ __html: marked(this.state.title || '') }} />
           }
           { this.state.isContentEditing ?
             <input onChange={this.onContentChange} onBlur={this.onContentBlur} value={this.state.content} /> :
-            <div role="button" tabIndex={0} onClick={this.onContentFocus} dangerouslySetInnerHTML={{ __html: marked(this.state.content || '') }} />
+            <div role="button" tabIndex={0} onClick={this.onContentClick} dangerouslySetInnerHTML={{ __html: marked(this.state.content || '') }} />
           }
           { this.state.isTagsEditing ?
             <input onChange={this.onTagsChange} onBlur={this.onTagsBlur} value={this.state.tags} /> :
-            <div role="button" tabIndex={0} onClick={this.onTagsFocus} dangerouslySetInnerHTML={{ __html: marked(this.state.tags || '') }} />
+            <div role="button" tabIndex={0} onClick={this.onTagsClick} dangerouslySetInnerHTML={{ __html: marked(this.state.tags || '') }} />
           }
         </div>
         <div className="post-menu-container">
           <div
             className="button -green center"
             onClick={() => {
-              console.log('deleting id', this.props.match.params.postID);
               this.props.deletePost(this.props.match.params.postID, this.props.history);
             }}
             role="button"

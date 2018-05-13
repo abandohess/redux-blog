@@ -98,6 +98,7 @@ class Post extends Component {
   }
 
   render() {
+    console.log(this.props.posts.post);
     return (
       <div className="post-container-container">
         <div className="post-container">
@@ -114,12 +115,17 @@ class Post extends Component {
             <input onChange={this.onTagsChange} onBlur={this.onTagsBlur} value={this.state.tags} /> :
             <div role="button" tabIndex={0} onClick={this.onTagsClick} dangerouslySetInnerHTML={{ __html: marked(this.state.tags || '') }} />
           }
+          <div dangerouslySetInnerHTML={{ __html: marked(`Author: ${this.props.posts.post.username}` || '') }} />
         </div>
         <div className="post-menu-container">
           <div
             className="button -green center"
             onClick={() => {
-              this.props.deletePost(this.props.match.params.postID, this.props.history);
+              if (this.props.authenticated) {
+                this.props.deletePost(this.props.match.params.postID, this.props.history);
+              } else {
+                alert('You may not delete a post before signing in');
+              }
             }}
             role="button"
             tabIndex="0"
@@ -134,6 +140,7 @@ class Post extends Component {
 const mapStateToProps = state => (
   {
     posts: state.posts,
+    authenticated: state.auth.authenticated,
   }
 );
 

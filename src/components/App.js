@@ -1,20 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
-// import Nav from './Nav';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Nav from './Nav';
 import Posts from '../containers/Posts';
 import NewPost from '../containers/NewPost';
 import Post from './Post';
-
-const Nav = (props) => {
-  return (
-    <nav>
-      <div className="menu-container">
-        <NavLink className="button -green center" to="/">Home</NavLink>
-        <NavLink className="button -orange center" to="/posts/new">New Post</NavLink>
-      </div>
-    </nav>
-  );
-};
+import SignIn from '../containers/SignIn';
+import SignUp from '../containers/SignUp';
+import requireAuth from '../containers/RequireAuth';
 
 const App = (props) => {
   return (
@@ -23,8 +15,10 @@ const App = (props) => {
         <Nav />
         <Switch>
           <Route exact path="/" component={Posts} />
-          <Route path="/posts/new" component={NewPost} />
+          <Route path="/posts/new" component={requireAuth(NewPost)} />
           <Route path="/posts/:postID" component={Post} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
           <Route render={() => (<div>post not found </div>)} />
         </Switch>
       </div>

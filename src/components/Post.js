@@ -102,6 +102,8 @@ class Post extends Component {
     return (
       <div className="post-container-container">
         <div className="post-container">
+          <img id="preview" alt="preview" src={this.state.preview} />
+          <input type="file" name="coverImage" onChange={this.onImageUpload} />
           <img src={this.props.posts.post.cover_url} alt="" className="rounded-picture" />
           { this.state.isTitleEditing ?
             <input onBlur={this.onTitleBlur} onChange={this.onTitleChange} value={this.state.title} /> :

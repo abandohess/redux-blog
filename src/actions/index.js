@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// export const ROOT_URL = 'https://cs52-blog-andy.herokuapp.com/api';
-export const ROOT_URL = 'http://localhost:9090/api';
+export const ROOT_URL = 'https://cs52-blog-andy.herokuapp.com/api';
+// export const ROOT_URL = 'http://localhost:9090/api';
 const API_KEY = '?key=a_bando-hess';
 
 export const ActionTypes = {
